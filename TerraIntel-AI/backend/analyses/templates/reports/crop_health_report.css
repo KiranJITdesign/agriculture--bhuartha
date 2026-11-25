@@ -1,0 +1,95 @@
+@page {
+  size: A4;
+  margin: 16mm;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #1B1B18;
+  background: #FFFFFF;
+  font-size: 11px;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.watermark {
+  position: fixed;
+  top: 42%;
+  left: 12%;
+  font-size: 36px;
+  font-weight: 600;
+  color: rgba(180, 35, 24, 0.16);
+  transform: rotate(-28deg);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.header {
+  border-bottom: 1px solid #E1E1DC;
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+}
+
+.header h1 {
+  font-size: 18px;
+  margin: 0 0 4px 0;
+  color: #1B1B18;
+}
+
+.muted {
+  color: #61615C;
+}
+
+.kpi-grid {
+  display: table;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 8px 0;
+  margin: 0 -8px 14px -8px;
+}
+
+.kpi-card {
+  display: table-cell;
+  border: 1px solid #E1E1DC;
+  border-radius: 5px;
+  padding: 8px 10px;
+  background: #F6F6F4;
+}
+
+.kpi-label {
+  font-size: 10px;
+  color: #61615C;
+}
+
+.kpi-value {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2E6B4F;
+}
+
+table.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+table.report-table th,
+table.report-table td {
+  border-bottom: 1px solid #E1E1DC;
+  padding: 5px 6px;
+  text-align: left;
+}
+
+table.report-table th {
+  font-size: 10px;
+  color: #61615C;
+}
+
+.mono {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.page-break {
+  page-break-before: always;
+}

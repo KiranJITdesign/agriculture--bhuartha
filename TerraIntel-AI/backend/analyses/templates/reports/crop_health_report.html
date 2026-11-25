@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Crop Health Report</title>
+</head>
+<body>
+  {% if low_coverage %}
+  <div class="watermark">insufficient coverage</div>
+  {% endif %}
+
+  <div class="header">
+    <h1>TerraIntel Crop Health Report — {{ region_name }}</h1>
+    <div class="muted">
+      Analysis window: {{ start_date }} to {{ end_date }} |
+      Valid cropland coverage: <span class="mono">{{ valid_pixel_pct }}%</span>
+      (ESA WorldCover class 40)
+    </div>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">Mean NDVI (cov {{ valid_pixel_pct }}%)</div>
+      <div class="kpi-value">{{ mean_ndvi }}</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Cropland area</div>
+      <div class="kpi-value">{{ cropland_area_ha }} ha</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Absolute low greenness (cov {{ valid_pixel_pct }}%)</div>
+      <div class="kpi-value">{{ absolute_low_area_ha }} ha</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Relative low greenness (cov {{ valid_pixel_pct }}%)</div>
+      <div class="kpi-value">{{ relative_low_area_ha }} ha</div>
+    </div>
+  </div>
+
+  <h2>Vigour Class Breakdown</h2>
+  <table class="report-table">
+    <thead>
+      <tr><th>Class</th><th>Area (ha)</th><th>Share (%)</th></tr>
+    </thead>
+    <tbody>
+      {% for row in class_stats %}
+      <tr>
+        <td>{{ row.vigour_class }}</td>
+        <td class="mono">{{ row.area_ha }} ha</td>
+        <td class="mono">{{ row.area_pct }}%</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="page-break"></div>
+
+  {% if previous_period %}
+  <h2>Multi-Period Comparison</h2>
+  <table class="report-table">
+    <thead><tr><th>Period</th><th>Mean NDVI</th><th>Delta NDVI</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>{{ previous_period.start_date }} to {{ previous_period.end_date }}</td>
+        <td class="mono">{{ previous_period.mean_ndvi }}</td>
+        <td class="mono">-</td>
+      </tr>
+      <tr>
+        <td>{{ start_date }} to {{ end_date }}</td>
+        <td class="mono">{{ mean_ndvi }}</td>
+        <td class="mono">{{ previous_period.delta_ndvi }}</td>
+      </tr>
+    </tbody>
+  </table>
+  {% endif %}
+
+  {% if ndvi_data_uri %}
+  <h2>NDVI Output Imagery</h2>
+  <p><img src="{{ ndvi_data_uri }}" alt="NDVI Output" style="max-width:100%;max-height:240px;border:1px solid #E1E1DC;"></p>
+  {% endif %}
+  {% if tc_data_uri %}
+  <h2>Sentinel-2 True-Colour Output</h2>
+  <p><img src="{{ tc_data_uri }}" alt="True Colour Output" style="max-width:100%;max-height:240px;border:1px solid #E1E1DC;"></p>
+  {% endif %}
+
+  <h2>Sentinel-2 Scene Provenance (COPERNICUS/S2_SR_HARMONIZED)</h2>
+  <table class="report-table">
+    <thead>
+      <tr><th>Scene ID</th><th>Acquisition UTC</th></tr>
+    </thead>
+    <tbody>
+      {% for s in scenes %}
+      <tr>
+        <td class="mono">{{ s.scene_id }}</td>
+        <td class="mono">{{ s.acquired_at }}</td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="2">No scene metadata recorded.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>

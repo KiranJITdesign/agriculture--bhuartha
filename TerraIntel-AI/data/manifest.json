@@ -1,0 +1,43 @@
+{
+  "region": {
+    "name": "Ludhiana Cropland Sample",
+    "crop_type": "Wheat",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            75.81,
+            30.87
+          ],
+          [
+            75.825,
+            30.87
+          ],
+          [
+            75.825,
+            30.885
+          ],
+          [
+            75.81,
+            30.885
+          ],
+          [
+            75.81,
+            30.87
+          ]
+        ]
+      ]
+    }
+  },
+  "sentinel2_scene_id": "S2B_43REQ_20261117_0_L2A",
+  "acquired_at": "2026-11-17T05:50:23.378000Z",
+  "cloud_cover_pct": 0.000309,
+  "files": {
+    "red": "sentinel2\\S2B_43REQ_20261117_0_L2A_B04_red.tif",
+    "nir": "sentinel2\\S2B_43REQ_20261117_0_L2A_B08_nir.tif",
+    "scl": "sentinel2\\S2B_43REQ_20261117_0_L2A_SCL.tif",
+    "worldcover": "worldcover\\N30E075_cropland_clip.tif",
+    "weather": "weather\\nasa_power_sample.json"
+  }
+}

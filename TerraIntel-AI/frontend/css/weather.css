@@ -1,0 +1,11 @@
+.weather-chart-box {
+  height: 340px;
+}
+
+.weather-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  align-items: flex-end;
+  margin-bottom: var(--s-4);
+}

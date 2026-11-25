@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgis/postgis:16-3.4
+        env:
+          POSTGRES_DB: terraintel
+          POSTGRES_USER: terraintel
+          POSTGRES_PASSWORD: terraintel
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install system geo dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gdal-bin libgdal-dev libgeos-dev libproj-dev libpango-1.0-0 libpangoft2-1.0-0
+      - name: Install Python dependencies
+        run: pip install -r TerraIntel-AI/backend/requirements.txt
+      - name: Ruff lint
+        run: cd TerraIntel-AI/backend && ruff check .
+      - name: Mypy typecheck
+        run: cd TerraIntel-AI/backend && mypy analysis services
+      - name: Run pytest
+        env:
+          DJANGO_SETTINGS_MODULE: config.settings.test
+          POSTGRES_HOST: localhost
+          REDIS_URL: redis://localhost:6379/0
+        run: cd TerraIntel-AI/backend && pytest

@@ -1,0 +1,34 @@
+# Environment & secrets
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+env/
+
+# Python / Django / Tools
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+staticfiles/
+*.log
+
+# Local database & generated media artifacts
+*.sqlite3
+*.db
+backend/media/
+
+# Downloaded large GeoTIFF rasters (keep fetch_sample_dataset.py & manifest.json)
+*.tif
+*.tiff
+
+# Editor / OS
+.vscode/
+.DS_Store
+Thumbs.db

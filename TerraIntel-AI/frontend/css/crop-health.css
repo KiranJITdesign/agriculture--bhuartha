@@ -1,0 +1,129 @@
+.ndvi-map-wrap {
+  position: relative;
+  height: 100%;
+  min-height: 460px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.map-toolbar {
+  position: absolute;
+  top: var(--s-3);
+  left: 56px;
+  z-index: 1000;
+  display: flex;
+  gap: var(--s-2);
+}
+
+.ndvi-legend {
+  position: absolute;
+  bottom: var(--s-3);
+  left: var(--s-3);
+  z-index: 1000;
+  background: rgba(17, 24, 39, 0.92);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-sm);
+  padding: var(--s-2) var(--s-3);
+  font-size: 11px;
+  color: var(--text);
+  box-shadow: var(--shadow-pop);
+}
+
+.legend-ramp {
+  display: flex;
+  height: 10px;
+  width: 170px;
+  border: 1px solid var(--border-strong);
+  margin: var(--s-1) 0;
+}
+
+.legend-ramp span {
+  flex: 1;
+}
+
+.legend-labels {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+}
+
+.legend-nodata {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin-top: var(--s-1);
+  color: var(--text-muted);
+}
+
+.nodata-swatch {
+  width: 14px;
+  height: 10px;
+  border: 1px solid var(--border-strong);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--border-strong),
+    var(--border-strong) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+}
+
+.chart-box {
+  height: 185px;
+}
+
+.ledger-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s-2);
+  margin-bottom: var(--s-2);
+}
+
+.copilot-card {
+  background: var(--surface-sunken);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: var(--s-3);
+  font-size: 12px;
+}
+
+.copilot-card-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  margin: 0 0 4px 0;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip-btn {
+  padding: 4px 8px;
+  font-size: 11px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--surface-sunken);
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.chip-btn:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.report-box {
+  background: var(--surface-sunken);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-md);
+  padding: var(--s-3);
+  margin-top: var(--s-3);
+}
